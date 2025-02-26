@@ -82,16 +82,7 @@ BOOL WINAPI createProcess(LPCWSTR lpApplicationName, LPWSTR lpCommandLine, LPSEC
         GetEnvironmentVariable(L"_____DIR", dir, pathSize);
         std::wstring path = dir;
         path += L"\\ue_sdk.dll";
-
-        // Here's the fix - InjectDll returns void*, not BOOL
-        void* injectionResult = InjectDll(lpProcessInformation->hProcess, path);
-
-        // Check the result based on the return type of InjectDll
-        // If InjectDll returns NULL on failure, you can check like this:
-        if (injectionResult == NULL) {
-            // Injection failed
-            MessageBoxW(NULL, L"DLL injection failed", L"Error", MB_OK);
-        }
+        InjectDll(lpProcessInformation->hProcess, path);
     }
 
     return result;
