@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+/.vs/pwg-friend
+/ImDeadInside/x64/Release
+/pwg-friend/x64/Release
+/_aux/x64/Release
