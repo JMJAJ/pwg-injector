@@ -76,6 +76,19 @@ BOOL WINAPI createProcess(LPCWSTR lpApplicationName, LPWSTR lpCommandLine, LPSEC
         oCreateProcessW(lpApplicationName, lpCommandLine, lpProcessAttributes, lpThreadAttributes, bInheritHandles,
             dwCreationFlags, lpEnvironment, lpCurrentDirectory, lpStartupInfo, lpProcessInformation);
 
+    /**Before
+
+    if (isGame) {
+        const uint16_t pathSize = 4096;
+        wchar_t dir[pathSize];
+        GetEnvironmentVariable(L"_____DIR", dir, pathSize);
+        std::wstring path = dir;
+        path += L"\\ue_sdk.dll";
+        InjectDll(lpProcessInformation->hProcess, path);
+    }
+    
+    */
+    
     if (isGame) {
         const uint16_t pathSize = 4096;
         wchar_t dir[pathSize];
