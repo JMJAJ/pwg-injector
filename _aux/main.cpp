@@ -75,19 +75,6 @@ BOOL WINAPI createProcess(LPCWSTR lpApplicationName, LPWSTR lpCommandLine, LPSEC
     const auto result =
         oCreateProcessW(lpApplicationName, lpCommandLine, lpProcessAttributes, lpThreadAttributes, bInheritHandles,
             dwCreationFlags, lpEnvironment, lpCurrentDirectory, lpStartupInfo, lpProcessInformation);
-
-    /**Before
-
-    if (isGame) {
-        const uint16_t pathSize = 4096;
-        wchar_t dir[pathSize];
-        GetEnvironmentVariable(L"_____DIR", dir, pathSize);
-        std::wstring path = dir;
-        path += L"\\ue_sdk.dll";
-        InjectDll(lpProcessInformation->hProcess, path);
-    }
-    
-    */
     
     if (isGame) {
         const uint16_t pathSize = 4096;
@@ -98,6 +85,7 @@ BOOL WINAPI createProcess(LPCWSTR lpApplicationName, LPWSTR lpCommandLine, LPSEC
 
         void* injectionResult = InjectDll(lpProcessInformation->hProcess, path);
 
+        // Just added this part which does literally nothing so gg me
         if (injectionResult == NULL) {
             MessageBoxW(NULL, L"DLL injection failed", L"Error", MB_OK);
         }
